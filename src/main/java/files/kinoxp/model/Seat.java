@@ -15,4 +15,6 @@ public class Seat {
     private SeatType seatType;
     private int row;
     private int seatPrice;
+
+
 }
