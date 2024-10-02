@@ -6,12 +6,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class Employee {
+public class Movie {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int employeeID;
-    private String employeeName;
-    private String employeeUsername;
-    private String employeePassword;
-
+    private int movieID;
+    private String movieTitle;
+    private int movieLength;
+    private MovieGenre movieGenre;
 }

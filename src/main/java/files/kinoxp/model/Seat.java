@@ -4,14 +4,14 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-
 @Entity
-public class Employee {
+public class Seat {
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int employeeID;
-    private String employeeName;
-    private String employeeUsername;
-    private String employeePassword;
-
+    private int seatID;
+    private int seatNumber;
+    private SeatType seatType;
+    private int row;
+    private int seatPrice;
 }
