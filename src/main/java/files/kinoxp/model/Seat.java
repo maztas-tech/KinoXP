@@ -1,5 +1,6 @@
 package files.kinoxp.model;
 
+import files.kinoxp.model.enums.SeatType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
