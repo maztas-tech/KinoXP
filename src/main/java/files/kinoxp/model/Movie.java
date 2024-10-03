@@ -19,4 +19,44 @@ public class Movie {
     @ManyToOne
     @JoinColumn(name = "movieScreeningIDFK",referencedColumnName = "movieScreeningID")
     private MovieScreening movieScreening;
+
+    public int getMovieID() {
+        return movieID;
+    }
+
+    public void setMovieID(int movieID) {
+        this.movieID = movieID;
+    }
+
+    public String getMovieTitle() {
+        return movieTitle;
+    }
+
+    public void setMovieTitle(String movieTitle) {
+        this.movieTitle = movieTitle;
+    }
+
+    public int getMovieLength() {
+        return movieLength;
+    }
+
+    public void setMovieLength(int movieLength) {
+        this.movieLength = movieLength;
+    }
+
+    public MovieGenre getMovieGenre() {
+        return movieGenre;
+    }
+
+    public void setMovieGenre(MovieGenre movieGenre) {
+        this.movieGenre = movieGenre;
+    }
+
+    public MovieScreening getMovieScreening() {
+        return movieScreening;
+    }
+
+    public void setMovieScreening(MovieScreening movieScreening) {
+        this.movieScreening = movieScreening;
+    }
 }
