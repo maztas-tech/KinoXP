@@ -1,10 +1,11 @@
 package files.kinoxp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import files.kinoxp.model.enums.MovieGenre;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Movie {
@@ -15,4 +16,7 @@ public class Movie {
     private String movieTitle;
     private int movieLength;
     private MovieGenre movieGenre;
+    @ManyToOne
+    @JoinColumn(name = "movieScreeningIDFK",referencedColumnName = "movieScreeningID")
+    private MovieScreening movieScreening;
 }

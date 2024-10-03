@@ -1,11 +1,11 @@
 package files.kinoxp.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Reservation {
@@ -14,4 +14,10 @@ public class Reservation {
     private int reservationID;
     private String reservationName;
     private LocalDate reservationDate;
+    @OneToMany(mappedBy = "reservation")
+    @JsonBackReference
+    private Set<Ticket> tickets = new HashSet<>();
+    @OneToMany(mappedBy = "reservation")
+    @JsonBackReference
+    private Set<Employee> employees = new HashSet<>();
 }
