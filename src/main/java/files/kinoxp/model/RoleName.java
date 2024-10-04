@@ -1,4 +1,4 @@
-package files.kinoxp.model.enums;
+package files.kinoxp.model;
 
 public enum RoleName {
     MANAGER,
