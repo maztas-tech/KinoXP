@@ -9,8 +9,7 @@ import java.util.Set;
 @Entity
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int customerID;
     private String customerName;
     private int customerPhoneNumber;
@@ -51,4 +50,11 @@ public class Customer {
         this.customerMail = customerMail;
     }
 
+    public Set<Ticket> getTickets() {
+        return tickets;
+    }
+
+    public void setTickets(Set<Ticket> tickets) {
+        this.tickets = tickets;
+    }
 }
