@@ -1,6 +1,6 @@
 package files.kinoxp.model.enums;
 
-public enum MovieGenre {
+public enum Genre {
     HORROR,
     ACTION,
     ROMANCE,

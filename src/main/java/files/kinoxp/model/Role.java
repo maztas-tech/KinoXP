@@ -1,30 +1,32 @@
 package files.kinoxp.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import files.kinoxp.model.enums.RoleNameEnum;
 import jakarta.persistence.*;
 
-import java.util.List;
+import java.util.Collection;
 
 @Entity
 public class Role {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roleID;
 
     @Enumerated(EnumType.STRING)
-    private RoleName roleName;
+    private RoleNameEnum roleName;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
     @JsonBackReference
-    private List<Employee> employee;
+    private Collection<Employee> employees;
 
-    public Role() {
-    }
-
-    public Role(int roleID, RoleName roleName) {
-        this.roleID = roleID;
+    public Role(RoleNameEnum roleName) {
         this.roleName = roleName;
     }
+
+    public Role() {
+
+    }
+
 
     public int getRoleID() {
         return roleID;
@@ -34,19 +36,19 @@ public class Role {
         this.roleID = roleID;
     }
 
-    public RoleName getRoleName() {
+    public RoleNameEnum getRoleName() {
         return roleName;
     }
 
-    public void setRoleName(RoleName roleName) {
+    public void setRoleName(RoleNameEnum roleName) {
         this.roleName = roleName;
     }
 
-    public List<Employee> getEmployee() {
-        return employee;
+    public Collection<Employee> getEmployees() {
+        return employees;
     }
 
-    public void setEmployee(List<Employee> employee) {
-        this.employee = employee;
+    public void setEmployees(Collection<Employee> employees) {
+        this.employees = employees;
     }
 }

@@ -1,11 +1,7 @@
 package files.kinoxp.model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import files.kinoxp.model.enums.MovieGenre;
+import files.kinoxp.model.enums.Genre;
 import jakarta.persistence.*;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @Entity
 public class Movie {
@@ -15,9 +11,10 @@ public class Movie {
     private int movieID;
     private String movieTitle;
     private int movieLength;
-    private MovieGenre movieGenre;
+    @Enumerated(EnumType.STRING)
+    private Genre genre;
     @ManyToOne
-    @JoinColumn(name = "movieScreeningIDFK",referencedColumnName = "movieScreeningID")
+    @JoinColumn(name = "movieScreeningFK", referencedColumnName = "movieScreeningID")
     private MovieScreening movieScreening;
 
     public int getMovieID() {
@@ -44,12 +41,12 @@ public class Movie {
         this.movieLength = movieLength;
     }
 
-    public MovieGenre getMovieGenre() {
-        return movieGenre;
+    public Genre getGenre() {
+        return genre;
     }
 
-    public void setMovieGenre(MovieGenre movieGenre) {
-        this.movieGenre = movieGenre;
+    public void setGenre(Genre genre) {
+        this.genre = genre;
     }
 
     public MovieScreening getMovieScreening() {

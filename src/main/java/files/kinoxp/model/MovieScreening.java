@@ -5,34 +5,23 @@ import jakarta.persistence.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.Collection;
 
 @Entity
 public class MovieScreening {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int movieScreeningID;
+    private String movieScreeningTitle;
     private boolean is3D;
     private LocalDate movieDate;
     private LocalTime movieTime;
     private int moviePrice;
-    @ManyToOne
-    @JoinColumn(name="theaterNumberFK", referencedColumnName = "theaterNumber")
-    private Theater theater;
-
-    @OneToMany(mappedBy = "movieScreening")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "movieScreening")
     @JsonBackReference
-    private Set<Movie> movies = new HashSet<>();
+    private Collection<Movie> movieCollections;
 
-    @ManyToOne
-    @JoinColumn(name="employeeIDFK", referencedColumnName = "employeeID")
-    private Employee employee;
 
-    @OneToMany(mappedBy = "movieScreening")
-    @JsonBackReference
-    private Set<Ticket> tickets = new HashSet<>();
 
     public int getMovieScreeningID() {
         return movieScreeningID;
@@ -40,6 +29,14 @@ public class MovieScreening {
 
     public void setMovieScreeningID(int movieScreeningID) {
         this.movieScreeningID = movieScreeningID;
+    }
+
+    public String getMovieScreeningTitle() {
+        return movieScreeningTitle;
+    }
+
+    public void setMovieScreeningTitle(String movieScreeningTitle) {
+        this.movieScreeningTitle = movieScreeningTitle;
     }
 
     public boolean isIs3D() {
@@ -74,35 +71,11 @@ public class MovieScreening {
         this.moviePrice = moviePrice;
     }
 
-    public Theater getTheater() {
-        return theater;
+    public Collection<Movie> getMovieCollections() {
+        return movieCollections;
     }
 
-    public void setTheater(Theater theater) {
-        this.theater = theater;
-    }
-
-    public Set<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(Set<Movie> movies) {
-        this.movies = movies;
-    }
-
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public Set<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void setTickets(Set<Ticket> tickets) {
-        this.tickets = tickets;
+    public void setMovieCollections(Collection<Movie> movieCollections) {
+        this.movieCollections = movieCollections;
     }
 }
