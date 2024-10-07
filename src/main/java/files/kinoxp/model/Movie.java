@@ -1,5 +1,6 @@
 package files.kinoxp.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import files.kinoxp.model.enums.Genre;
 import jakarta.persistence.*;
 
@@ -15,6 +16,7 @@ public class Movie {
     private Genre genre;
     @ManyToOne
     @JoinColumn(name = "movieScreeningFK", referencedColumnName = "movieScreeningID")
+    @JsonBackReference
     private MovieScreening movieScreening;
 
     public int getMovieID() {

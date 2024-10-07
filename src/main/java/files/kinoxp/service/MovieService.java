@@ -3,6 +3,7 @@ package files.kinoxp.service;
 import files.kinoxp.model.Movie;
 import files.kinoxp.repository.MovieRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +14,8 @@ public class MovieService {
     @Autowired
     MovieRepository movieRepository;
 
-    public void createMovie(Movie movie){
-        movieRepository.save(movie);
+    public Movie createMovie(Movie movie){
+        return movieRepository.save(movie);
     }
 
     public List<Movie> getMovies(){
@@ -33,5 +34,14 @@ public class MovieService {
         newMovie.setGenre(movie.getGenre());
         newMovie.setMovieScreening(movie.getMovieScreening());
         movieRepository.save(newMovie);
+    }
+
+    public ResponseEntity<Movie> updateMovie2(int id, Movie movie){
+        if (movieRepository.findById(id).isPresent()){
+            movieRepository.save(movie);
+            return ResponseEntity.ok(movie);
+        }else{
+            return ResponseEntity.notFound().build();
+        }
     }
 }

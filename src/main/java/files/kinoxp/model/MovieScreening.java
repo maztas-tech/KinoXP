@@ -18,7 +18,6 @@ public class MovieScreening {
     private LocalTime movieTime;
     private int moviePrice;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "movieScreening")
-    @JsonBackReference
     private Collection<Movie> movieCollections;
 
 

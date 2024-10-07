@@ -4,6 +4,7 @@ import files.kinoxp.model.Movie;
 import files.kinoxp.service.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,8 +17,12 @@ public class MovieController {
 
     @PostMapping("/saveMovie")
     @ResponseStatus(HttpStatus.CREATED)
-    public void createMovie(@RequestBody Movie movie) {
-        movieService.createMovie(movie);
+    public ResponseEntity<Movie> createMovie(@RequestBody Movie movie) {
+        if (movieService.createMovie(movie) != null){
+            return new ResponseEntity<>(movie, HttpStatus.CREATED);
+        }else{
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/movies")
@@ -30,8 +35,8 @@ public class MovieController {
     }
 
     @PutMapping("/updateMovie")
-    public void updateMovie(@RequestBody Movie movie){
-        movieService.updateMovie(movie.getMovieID(), movie);
+    public ResponseEntity<Movie> updateMovie(@RequestBody Movie movie){
+        return movieService.updateMovie2(movie.getMovieID(), movie);
     }
 
 
