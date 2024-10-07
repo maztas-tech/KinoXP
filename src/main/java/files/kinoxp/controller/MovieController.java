@@ -24,14 +24,14 @@ public class MovieController {
     public List<Movie> movies(){
         return movieService.getMovies();
     }
-    @DeleteMapping("/deleteMovie/{id}")
-    public void deleteMovie(@PathVariable int id){
-        movieService.deleteMovie(id);
+    @DeleteMapping("/deleteMovie")
+    public void deleteMovie(@RequestBody Movie movie) {
+        movieService.deleteMovie(movie.getMovieID());
     }
 
-    @PutMapping("/updateMovie/{id}")
-    public void updateMovie(@PathVariable int id, @RequestBody Movie movie){
-        movieService.updateMovie(id,movie);
+    @PutMapping("/updateMovie")
+    public void updateMovie(@RequestBody Movie movie){
+        movieService.updateMovie(movie.getMovieID(), movie);
     }
 
 
