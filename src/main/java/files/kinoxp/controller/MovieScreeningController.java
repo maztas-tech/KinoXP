@@ -4,6 +4,7 @@ import files.kinoxp.model.MovieScreening;
 import files.kinoxp.service.MovieScreeningService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,4 +30,12 @@ public class MovieScreeningController {
     public void deleteMovieScreening(@PathVariable int id){
         movieScreeningService.deleteMovieScreening(id);
     }
+
+    @PutMapping("updateMovieScreening")
+    public ResponseEntity<MovieScreening> updateMovieScreening(@RequestBody MovieScreening movieScreening){
+        return movieScreeningService.updateMovieScreening(movieScreening, movieScreening.getMovieScreeningID());
+
+    }
+
 }
+
