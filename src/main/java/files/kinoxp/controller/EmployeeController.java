@@ -37,6 +37,10 @@ public class EmployeeController {
 
     @PutMapping("/updateEmployee")
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
-        return employeeService.updateEmployee(employee.getEmployeeID(), employee);
+        if (employeeService.updateEmployee(employee.getEmployeeID(), employee) != null){
+            return new ResponseEntity<>(employee, HttpStatus.OK);
+        }else{
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
