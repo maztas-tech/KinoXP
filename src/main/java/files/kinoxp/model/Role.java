@@ -16,7 +16,6 @@ public class Role {
     private RoleNameEnum roleName;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "role")
-    @JsonBackReference
     private Collection<Employee> employees;
 
     public Role(RoleNameEnum roleName) {
