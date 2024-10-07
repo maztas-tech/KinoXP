@@ -5,6 +5,8 @@ import files.kinoxp.repository.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class RoleService {
 
@@ -15,6 +17,11 @@ public class RoleService {
 
     public void save(Role role) {
         roleRepository.save(role);
+    }
+
+    public List<Role> getAllRoles() {
+        List<Role> newlist = roleRepository.findAll();
+        return newlist;
     }
 
 }
