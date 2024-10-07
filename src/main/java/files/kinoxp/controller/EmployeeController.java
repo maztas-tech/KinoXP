@@ -3,6 +3,7 @@ package files.kinoxp.controller;
 import files.kinoxp.model.Employee;
 import files.kinoxp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,9 +16,12 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @PostMapping("/saveEmployee")
-    public String saveEmployee(@RequestBody Employee employee) {
-        employeeService.save(employee);
-        return employee.getEmployeeName() + " saved successfully";
+    public ResponseEntity<Employee> saveEmployee(@RequestBody Employee employee) {
+        if (employeeService.save(employee) != null){
+            return new ResponseEntity<>(employee, HttpStatus.CREATED);
+        }else{
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/allEmployee")
