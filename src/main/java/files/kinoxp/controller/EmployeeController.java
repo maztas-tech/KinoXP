@@ -3,10 +3,8 @@ package files.kinoxp.controller;
 import files.kinoxp.model.Employee;
 import files.kinoxp.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class EmployeeController {
@@ -26,5 +24,8 @@ public class EmployeeController {
         return "Employee removed successfully";
     }
 
-
+    @PutMapping("/updateEmployee")
+    public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
+        return employeeService.updateEmployee(employee.getEmployeeID(), employee);
+    }
 }
