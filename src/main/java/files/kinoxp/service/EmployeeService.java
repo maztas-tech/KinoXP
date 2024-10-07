@@ -6,14 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EmployeeService {
 
     @Autowired
     private EmployeeRepository employeeRepository;
 
-    public void save(Employee employee) {
-        employeeRepository.save(employee);
+    public Employee save(Employee employee) {
+        return employeeRepository.save(employee);
     }
 
     public void deleteById(int id) {
@@ -28,6 +30,10 @@ public class EmployeeService {
             System.out.println("Employee doesn't exist");
             return ResponseEntity.notFound().build();
         }
+    }
+
+    public List<Employee> getAllEmployees() {
+        return employeeRepository.findAll();
     }
 
 
