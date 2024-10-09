@@ -3,6 +3,7 @@ package files.kinoxp.service;
 import files.kinoxp.model.Employee;
 import files.kinoxp.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +19,22 @@ public class EmployeeService {
         return employeeRepository.save(employee);
     }
 
-    public void deleteById(int id) {
-        employeeRepository.deleteById(id);
+    public ResponseEntity<Employee> findById(Integer id) {
+        if (employeeRepository.findById(id).isPresent()) {
+            return new ResponseEntity<>(employeeRepository.findById(id).get(), HttpStatus.OK);
+        }
+        else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    public ResponseEntity<HttpStatus> deleteById(int id) {
+        if (employeeRepository.findById(id).isPresent()) {
+            employeeRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.OK, HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND);
+        }
     }
 
     public ResponseEntity<Employee> updateEmployee(int id, Employee employee) {

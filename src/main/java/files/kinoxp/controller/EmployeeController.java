@@ -31,17 +31,12 @@ public class EmployeeController {
     }
 
     @DeleteMapping("/removeemployee")
-    public String removeEmployee(@RequestBody Employee employee) {
-        employeeService.deleteById(employee.getEmployeeID());
-        return "Employee removed successfully";
+    public ResponseEntity<HttpStatus> removeEmployee(@RequestBody Employee employee) {
+        return employeeService.deleteById(employee.getEmployeeID());
     }
 
     @PutMapping("/updateEmployee")
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
-        if (employeeService.updateEmployee(employee.getEmployeeID(), employee) != null){
-            return new ResponseEntity<>(employee, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return employeeService.updateEmployee(employee.getEmployeeID(), employee);
     }
 }
