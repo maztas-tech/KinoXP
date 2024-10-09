@@ -28,8 +28,8 @@ public class MovieScreeningController {
     }
 
     @DeleteMapping("deleteMovieScreening/{id}")
-    public void deleteMovieScreening(@PathVariable int id){
-        movieScreeningService.deleteMovieScreening(id);
+    public ResponseEntity<HttpStatus> deleteMovieScreening(@PathVariable int id){
+        return movieScreeningService.deleteMovieScreening(id);
     }
 
     @PutMapping("updateMovieScreening")

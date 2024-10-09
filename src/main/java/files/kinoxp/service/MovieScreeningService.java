@@ -5,6 +5,7 @@ import files.kinoxp.model.MovieScreening;
 import files.kinoxp.repository.MovieRepository;
 import files.kinoxp.repository.MovieScreeningRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -25,11 +26,12 @@ public class MovieScreeningService {
         return movieScreeningRepository.findAll();
     }
 
-    public ResponseEntity<MovieScreening> deleteMovieScreening(int id) {
-        if (movieScreeningRepository.existsById(id)) {
-            return ResponseEntity.ok().build();
+    public ResponseEntity<HttpStatus> deleteMovieScreening(int id) {
+        if (movieScreeningRepository.findById(id).isPresent()) {
+            movieScreeningRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.OK, HttpStatus.OK);
         }else {
-            return ResponseEntity.notFound().build();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND, HttpStatus.NOT_FOUND);
         }
 
     }
