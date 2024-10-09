@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*")
 @RestController
 public class MovieController {
 
@@ -29,10 +30,25 @@ public class MovieController {
     public List<Movie> movies(){
         return movieService.getMovies();
     }
-    @DeleteMapping("/deleteMovie")
+
+    @DeleteMapping("/deleteMovie/{movieID}")
+    public ResponseEntity<String> deleteMovie(@PathVariable int movieID) {
+        return movieService.deleteMovie(movieID);
+    }
+
+    /*@DeleteMapping("/deleteMovie/{movieID}")
+    public ResponseEntity<HttpStatus> deleteMovie(@PathVariable int movieID) {
+        return movieService.deleteMovie(movieID);
+    }
+
+     */
+
+    /*@DeleteMapping("/deleteMovie")
     public void deleteMovie(@RequestBody Movie movie) {
         movieService.deleteMovie(movie.getMovieID());
     }
+
+     */
 
     @PutMapping("/updateMovie")
     public ResponseEntity<Movie> updateMovie(@RequestBody Movie movie){
