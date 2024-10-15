@@ -19,6 +19,11 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+      DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+
     steps:
     - uses: actions/checkout@v4
     - name: Set up JDK 21
