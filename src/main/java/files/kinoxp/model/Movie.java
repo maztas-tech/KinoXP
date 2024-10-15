@@ -18,6 +18,8 @@ public class Movie {
     @JoinColumn(name = "movieScreeningFK", referencedColumnName = "movieScreeningID")
     @JsonBackReference
     private MovieScreening movieScreening;
+
+    @Column(length = 500)
     private String photo;
 
     public int getMovieID() {
