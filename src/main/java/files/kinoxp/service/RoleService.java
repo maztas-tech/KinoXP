@@ -12,7 +12,7 @@ public class RoleService {
 
 
     @Autowired
-    RoleRepository roleRepository;
+    private RoleRepository roleRepository;
 
 
     public void save(Role role) {

@@ -17,10 +17,22 @@ public class MovieScreening {
     private LocalDate movieDate;
     private LocalTime movieTime;
     private int moviePrice;
+
+    @ManyToOne
+    @JsonBackReference
+    @JoinColumn(name = "theaterNum", referencedColumnName = "theaterNum")
+    private Theater theater;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "movieScreening")
     private Collection<Movie> movieCollections;
 
+    public Theater getTheater() {
+        return theater;
+    }
 
+    public void setTheater(Theater theater) {
+        this.theater = theater;
+    }
 
     public int getMovieScreeningID() {
         return movieScreeningID;
