@@ -16,6 +16,9 @@ public class Theater {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "theater")
     private List<MovieScreening> movieScreenings;
 
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "theater")
+    private List<Seat> seats;
+
     public Theater(String theaterName) {
         this.theaterName = theaterName;
     }
