@@ -7,13 +7,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TheaterInitConfiguration implements CommandLineRunner {
+public class TheaterInitConfiguration {
 
     @Autowired
     private TheaterRepository theaterRepository;
 
-    @Override
-    public void run(String... args) throws Exception {
+    public void createTheater() {
 
         if (theaterRepository.count() == 0) {
             theaterRepository.save(new Theater("Sal 1"));

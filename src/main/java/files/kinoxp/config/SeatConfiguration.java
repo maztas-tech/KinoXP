@@ -23,7 +23,7 @@ public class SeatConfiguration implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        theaterInitConfiguration.run();
+        theaterInitConfiguration.createTheater();
 
         if (seatRepository.count() == 0){
             int countRow;
