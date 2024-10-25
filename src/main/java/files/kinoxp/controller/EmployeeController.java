@@ -39,4 +39,21 @@ public class EmployeeController {
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee) {
         return employeeService.updateEmployee(employee.getEmployeeID(), employee);
     }
+
+    @GetMapping("/employee")
+    public List<Employee> getAllEmployee2() {
+        return employeeService.getAllEmployees();
+    }
+
+    @PostMapping("/employee")
+    public ResponseEntity<Employee> saveEmployee2(@RequestBody Employee employee) {
+        if (employeeService.save(employee) != null){
+            return new ResponseEntity<>(employee, HttpStatus.CREATED);
+        }else{
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+
 }
